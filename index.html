@@ -10,13 +10,19 @@
 
 <h2> Friends </h2>
 
-<div data-bind="template: "friendsTemplate'"></div>
+<ul data-bind="template: {name:'friendsTemplate', foreach:friends}"></ul>
 
-script id="friendsTemp[;late" type="text/html">
+<script id="friendsTemplate" type="text/html">
 	<ul>
 		{{each(index, friend) friends}}
-			<li> ${friend.name } </li>
+			<li> ${friend.name } - ${ new Date } </li>
 		{{/each}}
+		<li>
+		<input data-bind="value: name" />
+		<button data-bind="click: remove"> Remove</button>
+		<label>
+		<input type="checkbox" data-bind="checked: isontwitter"/> </label>
+		{{if<input data-bind="value: twitterName, visibile: isontwitter" /> }}
 	</ul>
 </script>
 <button data-bind="click: addFriend"> Add friend </button>
@@ -26,6 +32,8 @@ script id="friendsTemp[;late" type="text/html">
 	function friend(name) {
 	return {
 		name: ko.observable(name)
+		isonTwitter: ko.obersvable(false)
+		twitterName : ko.observable(),
 		};
 	}
 	
