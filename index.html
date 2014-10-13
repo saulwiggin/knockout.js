@@ -18,7 +18,10 @@ script id="friendsTemp[;late" type="text/html">
 			<li> ${friend.name } </li>
 		{{/each}}
 	</ul>
-
+</script>
+<button data-bind="click: addFriend"> Add friend </button>
+	
+	
 <script type+"text/javascript">
 	function friend(name) {
 	return {
@@ -31,7 +34,10 @@ script id="friendsTemp[;late" type="text/html">
 		firstname: ko.obervable("Bert"),
 		lastname: ko.obervable("Bert"),
 		friends : ko.observableArray([new friend("Steve"), new friend("Annie)])
-		
+		addFriend: function() {
+		this.friends.push(new friend("Another"));
+		}
+		};
 		viewModel.fullname = ko.dependantobservatble(function(){
 			return this.firstname() + "" + this.lastname;
 	};
