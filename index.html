@@ -1,5 +1,5 @@
 @{ ViewBag.title = "Home Page";}
-<script src="/scripts/knockout-1.2.0pre.js" type="text/javascript></script>
+<script src="/scripts/knockout.js" type="text/javascript></script>
 
 <h3> Details </h3>
 
@@ -8,11 +8,29 @@
 
 <p> Full name: <span data-bind="text: fullname" </span>  </p>
 
+<h2> Friends </h2>
+
+<div data-bind="template: "friendsTemplate'"></div>
+
+script id="friendsTemp[;late" type="text/html">
+	<ul>
+		{{each(index, friend) friends}}
+			<li> ${friend.name } </li>
+		{{/each}}
+	</ul>
 
 <script type+"text/javascript">
+	function friend(name) {
+	return {
+		name: ko.observable(name)
+		};
+	}
+	
+
 	var viewModel = {
 		firstname: ko.obervable("Bert"),
 		lastname: ko.obervable("Bert"),
+		friends : ko.observableArray([new friend("Steve"), new friend("Annie)])
 		
 		viewModel.fullname = ko.dependantobservatble(function(){
 			return this.firstname() + "" + this.lastname;
